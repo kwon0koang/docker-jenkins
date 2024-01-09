@@ -5,8 +5,7 @@ services:
     build:
       # Dockerfile이 있는 디렉토리 경로
       context: .
-    environment:
-      node.name: jenkins
+    container_name: jenkins
     ports:
       - "8000:8080"
       - "50010:50000"
