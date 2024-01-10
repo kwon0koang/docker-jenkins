@@ -4,17 +4,28 @@ services:
   jenkins:
     build:
       # Dockerfile이 있는 디렉토리 경로
-      context: .
+      context: ./jenkins
     container_name: jenkins
     ports:
       - "8080:8080"
       - "50010:50000"
+    environment:
+      - HOST_IP=${DOCKER_HOST_IP:-host.docker.internal} # 호스트의 IP 주소를 환경 변수로 전달하거나 Docker 고유한 host.docker.internal 호스트 이름을 사용할 수 있음
     volumes:
-      - ./scripts:/var/jenkins_home/scripts
-      - ./py:/var/jenkins_home/py
+      - ./jenkins/scripts:/var/jenkins_home/scripts
+      - ./jenkins/py:/var/jenkins_home/py
       - jenkins-data:/var/jenkins_home
     # 컨테이너가 중단되면 자동으로 재시작하도록 설정
     restart: unless-stopped
+  # appium:
+  #   build:
+  #     context: ./appium
+  #   container_name: appium
+  #   ports:
+  #     - "4723:4723"
+  #   volumes:
+  #     - /Users/user/Library/Android/sdk:/var/jenkins_home/sdk
+  #   restart: unless-stopped
 
 volumes:
   jenkins-data:
