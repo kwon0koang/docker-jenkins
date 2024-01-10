@@ -7,10 +7,11 @@ services:
       context: .
     container_name: jenkins
     ports:
-      - "8000:8080"
+      - "8080:8080"
       - "50010:50000"
     volumes:
       - ./scripts:/var/jenkins_home/scripts
+      - ./py:/var/jenkins_home/py
       - jenkins-data:/var/jenkins_home
     # 컨테이너가 중단되면 자동으로 재시작하도록 설정
     restart: unless-stopped
