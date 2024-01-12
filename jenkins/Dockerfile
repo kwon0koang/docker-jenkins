@@ -12,9 +12,11 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # 가상 환경 생성 및 활성화
-RUN python3 -m venv venv
-ENV PATH="/venv/bin:$PATH"
+RUN python3 -m venv venv-jenkins
+ENV PATH="$PATH:/venv-jenkins/bin"
+RUN . /venv-jenkins/bin/activate
 
+# 가상 환경에 패키지 설치
 RUN pip3 install appium-python-client
 RUN pip3 install html-testRunner
 

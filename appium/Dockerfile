@@ -6,6 +6,7 @@ RUN npm install -g appium
 # 드라이버 설치
 RUN appium driver install uiautomator2
 RUN appium driver install xcuitest
+RUN appium driver install chromium
 
 # RUN apt-get update && \
 #     apt-get install -y wget unzip default-jdk
